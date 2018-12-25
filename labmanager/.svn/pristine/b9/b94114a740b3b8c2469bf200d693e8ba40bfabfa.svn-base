@@ -1,0 +1,5 @@
+package kr.ac.computereng.labmanager.common.board;
+
+public interface IBoardService {
+
+}

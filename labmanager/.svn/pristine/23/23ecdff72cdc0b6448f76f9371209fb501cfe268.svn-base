@@ -1,0 +1,7 @@
+package kr.ac.computereng.labmanager.board;
+
+import kr.ac.computereng.labmanager.common.board.IBoardService;
+
+public class BoardService implements IBoardService {
+
+}

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.ac.computereng.labmanager.common.board.repo.IBoardDao"> 
+	
+	<resultMap type="BoardDatatype" id="BoardResult">
+		<result property="bno" column="BNO"/>
+		<result property="writer" column="WRITER"/>
+		<result property="title" column="TITLE"/>
+		<result property="content" column="CONTENT"/>
+		<result property="regdate" column="REGDATE"/>
+		<result property="viewcnt" column="VIEWCNT"/>
+	</resultMap>
+
+ 	<insert id="create" parameterType="BoardDatatype">
+ 		INSERT INTO TBL_BOARD
+	    	(TITLE,CONTENT,WRITER) 
+	    VALUES 
+	    	(#{title},#{content},#{writer});
+ 	</insert>
+ 	
+ 	<select id="read" resultMap="BoardResult">
+ 		SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, VIEWCNT FROM TBL_BOARD WHERE BNO = #{bno}
+ 	</select>
+ 	
+ 	<delete id="delete" parameterType="Integer">
+ 		DELETE FROM TBL_BOARD WHERE BNO = #{bno}
+ 	</delete>
+ 	
+ 	<update id="update" parameterType="BoardDatatype">
+ 		UPDATE TBL_BOARD SET TITLE=#{title},CONTENT=#{content} WHERE BNO=#{bno}
+ 	</update>
+ 	
+ 	<select id="listAll" resultMap="BoardResult">
+ 		SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, VIEWCNT FROM TBL_BOARD 
+ 		WHERE BNO > 0 order by bno desc, regdate desc
+ 	</select> 	
+ 	
+ 	<select id="listPage" resultMap="BoardResult">
+ 		SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, VIEWCNT FROM TBL_BOARD 
+ 		WHERE BNO > 0 order by bno desc, regdate desc limit #{page},10
+ 	</select>
+ 	
+ 	<select id="listCriteria" resultMap="BoardResult">
+ 		SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, VIEWCNT FROM TBL_BOARD 
+ 		WHERE BNO > 0 order by bno desc, regdate desc limit #{pageStart},#{perPageNum}
+ 	</select>
+ 	
+ 	<select id="countPaging" resultType="int">
+ 		SELECT COUNT(BNO) FROM TBL_BOARD WHERE BNO > 0
+ 	</select>
+ 	
+ 	<select id="search" resultMap="BoardResult">
+ 		SELECT * FROM TBL_BOARD WHERE BNO > 0
+ 		<include refid="searchlist"></include>
+ 		ORDER BY BNO DESC LIMIT #{pageStart},#{perPageNum}
+ 	</select>
+ 	
+ 	<select id="searchCount" resultType="int">
+ 		SELECT COUNT(BNO) FROM TBL_BOARD WHERE BNO > 0
+ 		<include refid="searchlist"></include>
+ 	</select>
+ 	
+ 	<sql id="searchlist">
+ 		<if test="searchType != null">
+ 			<if test="searchType == 't'.toString()">
+ 			AND TITLE LIKE CONCAT('%',#{keyword},'%')
+ 			</if>
+ 			<if test="searchType == 'c'.toString()">
+ 			AND CONTENT LIKE CONCAT('%',#{keyword},'%')
+ 			</if>
+ 			<if test="searchType == 'w'.toString()">
+ 			AND WRITER LIKE CONCAT('%',#{keyword},'%')
+ 			</if>
+ 			<if test="searchType == 'tc'.toString()">
+ 			AND (TITLE LIKE CONCAT('%',#{keyword},'%') OR CONTENT LIKE CONCAT('%',#{keyword},'%'))
+ 			</if>
+ 			<if test="searchType == 'cw'.toString()">
+ 			AND (CONTENT LIKE CONCAT('%',#{keyword},'%') OR WRITER LIKE CONCAT('%',#{keyword},'%'))
+ 			</if>
+ 			<if test="searchType == 'Tcw'.toString()">
+ 			AND (TITLE LIKE CONCAT('%',#{keyword},'%') OR CONTENT LIKE CONCAT('%',#{keyword},'%') OR WRITER LIKE CONCAT('%',#{keyword},'%'))
+ 			</if>
+ 		</if>
+ 	</sql>
+</mapper>

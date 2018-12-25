@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dataset>
+	<TEST_ROLE id="test1" role="yet"/>
+	<TEST_ROLE id="test2" role="yet"/>
+	<TEST_ROLE id="test3" role="yet"/>
+</dataset>

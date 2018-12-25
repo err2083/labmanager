@@ -1,0 +1,11 @@
+package kr.ac.computereng.labmanager.common.datatype;
+
+import java.util.Calendar;
+
+public class BoardDatatype {
+	public int id;
+	public UserDatatype writer;
+	public String title;
+	public String Content;
+	public Calendar calendar;
+}

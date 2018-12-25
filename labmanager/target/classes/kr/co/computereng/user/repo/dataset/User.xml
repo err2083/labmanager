@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dataset>
+	<TEST_USER id="test1" pass="test" name="test1" email1="email1" email2="email2" study="study" hope="hope"/>
+	<TEST_USER id="test2" pass="test" name="test2" email1="email1" email2="email2" study="study" hope="hope"/>
+	<TEST_USER id="test3" pass="test" name="test3" email1="email1" email2="email2" study="study" hope="hope"/>
+</dataset>

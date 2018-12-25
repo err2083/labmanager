@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.ac.computereng.labmanager.common.user.repo.IUserDao"> 
+	<resultMap type="UserDatatype" id="UserResult">
+		<result property="id" column="ID"/>
+		<result property="password" column="PASS"/>
+		<result property="name" column="NAME"/>
+		<result property="email1" column="EMAIL1"/>
+		<result property="email2" column="EMAIL2"/>
+		<result property="study" column="STUDY"/>
+		<result property="hope" column="HOPE"/>
+	</resultMap>
+
+	<insert id="add" parameterType="UserDatatype">
+	    INSERT INTO TEST_USER
+	    	(ID, PASS,NAME,EMAIL1,EMAIL2,STUDY,HOPE) 
+	    VALUES 
+	    	(#{id},#{password},#{name},#{email1},#{email2},#{study},#{hope});
+    	<selectKey resultType="int" order="AFTER">
+    		SELECT COUNT(ID) FROM TEST_USER WHERE ID=#{id}
+    	</selectKey>
+	</insert>
+	
+	<insert id="addRole" parameterType="kr.ac.computereng.labmanager.common.datatype.UserRole">
+	    INSERT INTO TEST_ROLE
+	    	(ID,ROLE) 
+	    VALUES 
+	    	(#{id},#{role});
+    	<selectKey resultType="int" order="AFTER">
+    		SELECT COUNT(ID) FROM TEST_ROLE WHERE ID=#{id}
+    	</selectKey>
+	</insert>
+	
+	<select id="selectOne" parameterType="String" resultMap="UserResult">
+ 		SELECT * FROM TEST_USER WHERE ID = #{id}
+ 	</select>
+ 	
+ 	<select id="selectOneRole" parameterType="String" resultType="kr.ac.computereng.labmanager.common.datatype.UserRole">
+ 		SELECT * FROM TEST_ROLE WHERE ID = #{id}
+ 	</select>
+  	
+  	<select id="selectAll" resultMap="UserResult">
+ 		SELECT * FROM TEST_USER ORDER BY ID DESC
+ 	</select>
+  	
+ 	<delete id="delete" parameterType="String">
+ 		DELETE FROM TEST_USER WHERE ID=#{id}
+ 	</delete>
+ 	
+ 	<delete id="deleteRole" parameterType="String">
+ 		DELETE FROM TEST_ROLE WHERE ID=#{id}
+ 	</delete>
+ 	
+ 	<update id="update" parameterType="kr.ac.computereng.labmanager.common.datatype.UserDatatype">
+ 		UPDATE TEST_USER SET PASS=#{password},STUDY=#{study},HOPE=#{hope} WHERE ID=#{id}
+ 	</update>
+ 	
+ 	<update id="authorize" parameterType="kr.ac.computereng.labmanager.common.datatype.UserRole">
+ 		UPDATE TEST_ROLE SET ROLE=#{role} WHERE ID=#{id}
+ 	</update>
+</mapper>
+

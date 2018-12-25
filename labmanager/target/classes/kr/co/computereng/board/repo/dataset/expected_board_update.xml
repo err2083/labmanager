@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dataset>
+	<TBL_BOARD bno="1" title="test1" content="test1cc" writer="aa" regdate="2018-06-01" viewcnt="12"/>
+	<TBL_BOARD bno="2" title="update_title" content="update_content" writer="bb" regdate="2018-05-20" viewcnt="34"/>
+	<TBL_BOARD bno="4" title="test4" content="test4cc" writer="dd" regdate="2018-05-13" viewcnt="56"/>
+	<TBL_BOARD bno="5" title="test5" content="test5cc" writer="ee" regdate="2018-05-01" viewcnt="16"/>
+	<TBL_BOARD bno="6" title="test6" content="test6cc" writer="ff" regdate="2018-04-01" viewcnt="0"/>
+</dataset>

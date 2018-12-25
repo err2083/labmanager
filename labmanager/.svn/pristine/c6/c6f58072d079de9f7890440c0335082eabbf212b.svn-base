@@ -1,0 +1,7 @@
+package kr.ac.computereng.labmanager.board.repo;
+
+import kr.ac.computereng.labmanager.common.board.repo.IBoardRepository;
+
+public class BoardRepository implements IBoardRepository {
+
+}

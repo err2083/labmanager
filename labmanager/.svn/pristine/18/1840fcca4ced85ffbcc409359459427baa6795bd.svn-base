@@ -1,0 +1,15 @@
+package kr.ac.computereng.labmanager.common.user;
+
+import java.util.List;
+
+import kr.ac.computereng.labmanager.common.datatype.Role;
+import kr.ac.computereng.labmanager.common.datatype.UserDatatype;
+
+public interface IUserService {
+	public boolean joinUser(UserDatatype user) throws Exception;	//회원추가
+	public boolean withdraw(String id) throws Exception;	//회원탈퇴
+	public boolean updateUser(UserDatatype user) throws Exception;	//회원정보수정
+	public UserDatatype searchOne(String id) throws Exception;	//회원한명정보가져오기
+	public boolean authorize(String id,Role role) throws Exception;	//회원권한부여
+	public List<UserDatatype> search() throws Exception;	//회원전체가져오기
+}

@@ -1,0 +1,33 @@
+package kr.ac.computereng.labmanager.common.user.repo;
+
+import java.util.List;
+
+import kr.ac.computereng.labmanager.common.datatype.UserDatatype;
+import kr.ac.computereng.labmanager.common.datatype.UserRole;
+
+public interface IUserDao {
+	public int add(UserDatatype user) throws Exception;	//user table add
+	
+	public int addRole(UserRole userrole) throws Exception; //role table add
+
+	/**
+	 * 아이디로 회원 찾기
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public UserDatatype selectOne(String id) throws Exception;
+	
+	public List<UserDatatype> selectAll() throws Exception;
+	
+	public void delete(String string) throws Exception;
+	
+	public void deleteRole(String string) throws Exception;
+	
+	public void update(UserDatatype user) throws Exception;
+
+	public void authorize(UserRole userrole) throws Exception;
+	
+	public UserRole selectOneRole(String id) throws Exception;
+}
+
